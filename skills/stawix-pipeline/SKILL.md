@@ -19,9 +19,10 @@ Fluxo: **Skyle → código → CHANGELOG → versão semântica → comandos git
 1. Descubra o slug do projeto na linha `## Skyle (projeto: <slug>)` do `AGENTS.md`.
 2. Se o MCP do Skyle estiver disponível, chame `skyle_start(projeto, card)` com o número do card, ou com `titulo` se o card não existir. Não leia o kanban antes.
 3. Se a tarefa for "corrija os bugs", chame `next_bug(projeto)` e trabalhe um bug por vez, até vir vazio.
-4. Não registre nada manualmente no ai-memory: os hooks já capturam a sessão. Use a busca do ai-memory só se precisar de contexto de sessões anteriores.
+4. Uma conversa pode ter vários cards. Trate cada card como uma tarefa: `skyle_start` ao começar e `skyle_done` assim que ele terminar, antes de passar ao próximo. Nunca acumule as atualizações para o fim da conversa.
+5. Não registre nada manualmente no ai-memory: os hooks já capturam a sessão. Use a busca do ai-memory só se precisar de contexto de sessões anteriores.
 
-## Ao terminar uma tarefa
+## Ao terminar uma tarefa (cada card)
 
 1. Rode os testes e o lint do que mudou.
 2. Adicione a entrada no `CHANGELOG.md`, em `[Unreleased]`, na categoria certa, com `(#<card>)` no fim.
