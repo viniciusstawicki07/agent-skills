@@ -17,21 +17,23 @@ Fluxo: **Skyle → código → CHANGELOG → versão semântica → comandos git
 ## Ao iniciar uma tarefa
 
 1. Descubra o slug do projeto na linha `## Skyle (projeto: <slug>)` do `AGENTS.md`.
-2. Se o MCP do Skyle estiver disponível, chame `skyle_start(projeto, card)` com o número do card, ou com `titulo` se o card não existir. Não leia o kanban antes.
-3. Se a tarefa for "corrija os bugs", chame `next_bug(projeto)` e trabalhe um bug por vez, até vir vazio.
-4. Uma conversa pode ter vários cards. Trate cada card como uma tarefa: `skyle_start` ao começar e `skyle_done` assim que ele terminar, antes de passar ao próximo. Nunca acumule as atualizações para o fim da conversa.
-5. Não registre nada manualmente no ai-memory: os hooks já capturam a sessão. Use a busca do ai-memory só se precisar de contexto de sessões anteriores.
+2. Se o MCP do Skyle estiver disponível, inicie o card numa chamada `skyle_start`: use `card` se ele existe ou `titulo` se for novo. Para tarefas com mais de duas etapas, inclua nessa mesma chamada um plano curto de até 7 itens, cada item com até 120 caracteres, em `passos=[...]`; em tarefas menores, omita `passos`. Não leia o kanban antes; use o número do card retornado nas chamadas seguintes.
+3. Ao retomar um card existente, chame `skyle_start` sem `passos` para preservar o checklist. Enviar `passos` reinicia a lista; `passos=[]` a limpa, então faça isso somente numa redefinição intencional do plano.
+4. Se a tarefa for "corrija os bugs", chame `next_bug(projeto)` e trabalhe um bug por vez, até vir vazio.
+5. Uma conversa pode ter vários cards. Trate cada card como uma tarefa: `skyle_start` ao começar e `skyle_done` assim que ele terminar, antes de passar ao próximo. Nunca acumule as atualizações para o fim da conversa.
+6. Não registre nada manualmente no ai-memory: os hooks já capturam a sessão. Use a busca do ai-memory só se precisar de contexto de sessões anteriores.
 
 ## Ao terminar uma tarefa (cada card)
 
 1. Rode os testes e o lint do que mudou.
 2. Adicione a entrada no `CHANGELOG.md`, em `[Unreleased]`, na categoria certa, com `(#<card>)` no fim.
-3. Chame `skyle_done(projeto, card, resumo, proximo, changelog)`:
+3. Se o card tiver checklist, marque cada etapa assim que ela for concluída com `skyle_passo(projeto, card, n)`. `n` começa em 1; marque somente trabalho já concluído, sem acumular todos os passos até o fim.
+4. Chame `skyle_done(projeto, card, resumo, proximo, changelog)`:
    - `resumo`: uma frase com o que foi feito.
    - `proximo`: uma frase com o próximo passo.
    - `changelog`: a linha exata que você adicionou.
    Se o MCP do Skyle não estiver disponível, siga sem ele e escreva o resumo e o próximo passo na resposta.
-4. Entregue os comandos de commit, sem executar:
+5. Entregue os comandos de commit, sem executar:
 
 ```bash
 git add <arquivos alterados>

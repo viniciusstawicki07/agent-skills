@@ -8,6 +8,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Changed
 
+- `stawix-pipeline`: checklist do card no Skyle — `passos` no `skyle_start` para tarefas com mais de duas etapas e `skyle_passo` ao concluir cada etapa.
 - `stawix-pipeline`: atualizar o Skyle a cada card concluído (`skyle_done` antes do próximo), sem acumular para o fim da conversa.
 
 ### Added
