@@ -1,6 +1,6 @@
 # Versionamento semântico
 
-Formato `MAJOR.MINOR.PATCH`, tag `vX.Y.Z` (ver https://semver.org/lang/pt-BR/).
+Formato `MAJOR.MINOR.PATCH` (ver https://semver.org/lang/pt-BR/). A tag segue o formato do projeto: o declarado em `Formato de tag:` no `AGENTS.md`, senão o das tags existentes, senão `vX.Y.Z`.
 
 | Incremento | Quando | Exemplo |
 | --- | --- | --- |

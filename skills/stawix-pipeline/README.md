@@ -78,7 +78,8 @@ Exemplos de pedidos:
 
 ## Convenções
 
-- **Tags:** `vX.Y.Z` (ex.: `v1.5.0`), anotadas.
+- **Tags:** anotadas, no formato do projeto. O padrão é `vX.Y.Z` (ex.: `v1.5.0`). Para usar outro formato, declare no `AGENTS.md` do projeto, por exemplo `` Formato de tag: `X.Y.Z` (sem prefixo) ``. Sem declaração, a skill segue o padrão das tags que já existem no repositório.
+- **Projeto em vários repositórios:** quando uma tarefa altera mais de um (ex.: backend e frontend), cada repositório recebe sua entrada no CHANGELOG e seus próprios comandos de commit.
 - **Commits:** Conventional Commits — `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `perf`; `!` para mudança incompatível; número do card no fim, `(#24)`.
 - **CHANGELOG:** uma linha por mudança, escrita para quem usa o software, sempre com `(#card)`.
 - **Projetos `0.y.z`:** mudança incompatível sobe o MINOR; a `1.0.0` é decisão manual.

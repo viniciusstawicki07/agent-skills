@@ -43,23 +43,31 @@ git push
 
 Tipos de commit: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `perf`. Mudança incompatível leva `!` depois do tipo (`feat!:`).
 
+**Tarefa que altera mais de um repositório** (por exemplo, backend e frontend em repositórios separados do mesmo projeto): atualize o `CHANGELOG.md` de cada repositório alterado, use no Skyle o componente de cada um e entregue os comandos de commit separados por repositório.
+
 ## Ao fechar uma versão (só quando o Vinicius pedir)
 
 1. Leia `[Unreleased]` e proponha o incremento pelas regras de `references/semver.md`, explicando em uma linha por quê.
-2. Depois da confirmação:
+2. Descubra o formato da tag do projeto, nesta ordem:
+   - o que o `AGENTS.md` do projeto declarar numa linha `Formato de tag:` (ex.: `` Formato de tag: `X.Y.Z` (sem prefixo) ``);
+   - sem declaração, o padrão das tags que já existem (`git tag --sort=-creatordate`);
+   - sem declaração e sem tags, `vX.Y.Z`.
+
+   Use esse formato em todas as tags e mensagens. Nunca troque o formato de um projeto por conta própria: pipelines de CI e políticas de limpeza do registry costumam depender dele.
+3. Depois da confirmação:
    - mova `[Unreleased]` para `## [X.Y.Z] - AAAA-MM-DD` e deixe um `[Unreleased]` vazio no topo;
-   - atualize a versão no manifesto do projeto (`pyproject.toml`, `pubspec.yaml`, `package.json` ou equivalente);
+   - atualize a versão no manifesto do projeto (`pyproject.toml`, `pubspec.yaml`, `package.json`, `VERSION` ou equivalente);
    - atualize os links de comparação no fim do CHANGELOG, se existirem.
-3. Entregue os comandos, sem executar:
+4. Entregue os comandos, sem executar, trocando `<tag>` pela versão no formato do projeto (`v1.5.0` ou `1.5.0`):
 
 ```bash
 git add CHANGELOG.md <manifesto>
-git commit -m "chore(release): vX.Y.Z"
-git tag -a vX.Y.Z -m "vX.Y.Z"
-git push && git push origin vX.Y.Z
+git commit -m "chore(release): <tag>"
+git tag -a <tag> -m "<tag>"
+git push && git push origin <tag>
 ```
 
-4. Lembre que o deploy é o próximo passo, feito pelo Vinicius.
+5. Lembre que o deploy é o próximo passo, feito pelo Vinicius.
 
 ## Respostas
 
