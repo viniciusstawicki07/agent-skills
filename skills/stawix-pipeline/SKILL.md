@@ -57,11 +57,12 @@ Tipos de commit: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `perf`. Mud
 3. Depois da confirmação:
    - mova `[Unreleased]` para `## [X.Y.Z] - AAAA-MM-DD` e deixe um `[Unreleased]` vazio no topo;
    - atualize a versão no manifesto do projeto (`pyproject.toml`, `pubspec.yaml`, `package.json`, `VERSION` ou equivalente);
+   - se o `README.md` tiver um selo de versão (shields.io ou equivalente), atualize-o para a nova versão junto com o manifesto;
    - atualize os links de comparação no fim do CHANGELOG, se existirem.
 4. Entregue os comandos, sem executar, trocando `<tag>` pela versão no formato do projeto (`v1.5.0` ou `1.5.0`):
 
 ```bash
-git add CHANGELOG.md <manifesto>
+git add CHANGELOG.md <manifesto> README.md
 git commit -m "chore(release): <tag>"
 git tag -a <tag> -m "<tag>"
 git push && git push origin <tag>

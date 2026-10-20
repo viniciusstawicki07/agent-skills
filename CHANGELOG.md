@@ -8,6 +8,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o 
 
 ### Changed
 
+- `stawix-pipeline`: ao fechar uma versão, atualizar também o selo de versão do `README.md`, se existir.
 - `stawix-pipeline`: formato da tag configurável por projeto (`Formato de tag:` no `AGENTS.md`, senão o padrão das tags existentes, senão `vX.Y.Z`); comandos de release usam `<tag>`.
 - `stawix-pipeline`: tarefas que alteram mais de um repositório atualizam o CHANGELOG e geram comandos de commit para cada repositório.
 - `stawix-pipeline`: checklist do card no Skyle — `passos` no `skyle_start` para tarefas com mais de duas etapas e `skyle_passo` ao concluir cada etapa.
