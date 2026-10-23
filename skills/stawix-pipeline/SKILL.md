@@ -18,10 +18,11 @@ Fluxo: **Skyle → código → CHANGELOG → versão semântica → comandos git
 
 1. Descubra o slug do projeto na linha `## Skyle (projeto: <slug>)` do `AGENTS.md`.
 2. Se o MCP do Skyle estiver disponível, inicie o card numa chamada `skyle_start`: use `card` se ele existe ou `titulo` se for novo. Para tarefas com mais de duas etapas, inclua nessa mesma chamada um plano curto de até 7 itens, cada item com até 120 caracteres, em `passos=[...]`; em tarefas menores, omita `passos`. Não leia o kanban antes; use o número do card retornado nas chamadas seguintes.
-3. Ao retomar um card existente, chame `skyle_start` sem `passos` para preservar o checklist. Enviar `passos` reinicia a lista; `passos=[]` a limpa, então faça isso somente numa redefinição intencional do plano.
-4. Se a tarefa for "corrija os bugs", chame `next_bug(projeto)` e trabalhe um bug por vez, até vir vazio.
-5. Uma conversa pode ter vários cards. Trate cada card como uma tarefa: `skyle_start` ao começar e `skyle_done` assim que ele terminar, antes de passar ao próximo. Nunca acumule as atualizações para o fim da conversa.
-6. Não registre nada manualmente no ai-memory: os hooks já capturam a sessão. Use a busca do ai-memory só se precisar de contexto de sessões anteriores.
+3. Ao iniciar um card, leia o retorno do `skyle_start`. Se a descrição vier cortada, houver anexos ou campos do bug, use `skyle_card` e `skyle_anexo`. Nunca abra a interface ou a API do Skyle para ler um card.
+4. Ao retomar um card existente, chame `skyle_start` sem `passos` para preservar o checklist. Enviar `passos` reinicia a lista; `passos=[]` a limpa, então faça isso somente numa redefinição intencional do plano.
+5. Se a tarefa for "corrija os bugs", chame `next_bug(projeto)` e trabalhe um bug por vez, até vir vazio.
+6. Uma conversa pode ter vários cards. Trate cada card como uma tarefa: `skyle_start` ao começar e `skyle_done` assim que ele terminar, antes de passar ao próximo. Nunca acumule as atualizações para o fim da conversa.
+7. Não registre nada manualmente no ai-memory: os hooks já capturam a sessão. Use a busca do ai-memory só se precisar de contexto de sessões anteriores.
 
 ## Ao terminar uma tarefa (cada card)
 
